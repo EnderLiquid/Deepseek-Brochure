@@ -150,10 +150,13 @@ code {
 
 .masthead__source {
   justify-content: center;
+  min-width: clamp(144px, 16vw, 320px);
+  padding: 0 24px;
   border-left: 1px solid var(--line);
   color: var(--surface-strong);
   background: var(--accent-1);
   font-weight: 800;
+  white-space: nowrap;
   transition: background 180ms ease, color 180ms ease;
 }
 
@@ -182,35 +185,88 @@ code {
 .chart {
   position: absolute;
   width: min(92%, 690px);
-  left: 4%;
+  left: max(4%, calc((100% - min(92%, 690px)) / 2));
   top: 7%;
   filter: drop-shadow(0 18px 28px rgba(18, 24, 39, 0.14));
   animation: chart-drift 16s ease-in-out infinite alternate;
 }
 
-.chart__contour {
-  fill: rgba(247, 241, 222, 0.32);
-  stroke: var(--accent-1);
-  stroke-width: 12;
+.context-map__paper {
+  fill: rgba(255, 252, 239, 0.78);
+  stroke: rgba(18, 24, 39, 0.2);
+  stroke-width: 1.2;
 }
 
-.chart__contour--thin {
-  fill: none;
-  stroke-width: 4;
-  opacity: 0.78;
+.context-map__paper--back {
+  opacity: 0.28;
+  transform: translate(22px, -22px);
 }
 
-.chart__route {
+.context-map__paper--mid {
+  opacity: 0.44;
+  transform: translate(12px, -8px);
+}
+
+.context-map__title,
+.context-map__ruler text {
+  fill: var(--accent-1);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.context-map__header,
+.context-map__rows path {
   fill: none;
-  stroke: url(#sweep);
+  stroke: rgba(39, 62, 145, 0.5);
   stroke-linecap: round;
-  stroke-width: 18;
+}
+
+.context-map__header {
+  stroke-width: 5;
+}
+
+.context-map__rows path {
+  stroke-width: 3;
+  opacity: 0.66;
+}
+
+.context-map__chunks rect {
+  fill: rgba(200, 240, 90, 0.62);
+  stroke: rgba(39, 62, 145, 0.36);
+  stroke-width: 1;
+}
+
+.context-map__ruler path {
+  fill: none;
+  stroke: rgba(39, 62, 145, 0.62);
+  stroke-linecap: square;
+  stroke-width: 3;
+}
+
+.context-map__flow path {
+  fill: none;
+  stroke: url(#tokenFlow);
+  stroke-linecap: round;
+  stroke-width: 16;
+}
+
+.context-map__flow path + path {
+  stroke-width: 8;
+  opacity: 0.62;
+}
+
+.context-map__flow circle {
+  fill: var(--accent-2);
+  stroke: var(--accent-1);
+  stroke-width: 4;
 }
 
 .metric-slab {
   position: absolute;
   left: clamp(20px, 6vw, 86px);
-  top: clamp(330px, 48vw, 560px);
+  bottom: clamp(38px, 6vw, 78px);
   width: min(430px, 78%);
   padding: clamp(22px, 3.4vw, 38px);
   color: var(--surface-strong);
@@ -432,8 +488,13 @@ h2 {
   border-right: 1px solid var(--line);
 }
 
+#model-title {
+  max-width: 6em;
+}
+
 #model-title span {
   display: block;
+  white-space: nowrap;
 }
 
 .model-studio__intro::after {
@@ -497,7 +558,7 @@ h2 {
   line-height: 0.9;
   letter-spacing: -0.09em;
   font-weight: 950;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .model-card h3 + p {
@@ -699,9 +760,19 @@ h2 {
   }
 
   .hero__visual {
-    min-height: 560px;
+    min-height: clamp(560px, 68vw, 660px);
     border-right: 0;
     border-bottom: 1px solid var(--line);
+  }
+
+  .chart {
+    width: min(88%, 650px);
+    left: max(6%, calc((100% - min(88%, 650px)) / 2));
+  }
+
+  .metric-slab {
+    bottom: clamp(32px, 5vw, 56px);
+    width: min(430px, 66%);
   }
 
   .hero__copy {
@@ -765,16 +836,32 @@ h2 {
   }
 
   .masthead__source {
-    padding: 0 14px;
+    min-width: 142px;
+    padding: 0 16px;
   }
 
   .hero__visual {
-    min-height: 470px;
+    min-height: clamp(430px, 86vw, 520px);
+  }
+
+  .chart {
+    width: min(108%, 560px);
+    left: -4%;
+    top: 5%;
   }
 
   .metric-slab {
-    width: 82%;
-    top: 300px;
+    width: min(360px, 78%);
+    bottom: 30px;
+    padding: clamp(18px, 6vw, 28px);
+  }
+
+  .metric-slab strong {
+    font-size: clamp(4.6rem, 22vw, 7.2rem);
+  }
+
+  .metric-slab span {
+    margin-top: 14px;
   }
 
   .coordinate-card--a {

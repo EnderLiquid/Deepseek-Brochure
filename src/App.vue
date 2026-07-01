@@ -5,7 +5,7 @@ const selectedModel = ref('pro')
 
 const models = {
   pro: {
-    name: 'DeepSeek-V4-Pro',
+    name: 'DeepSeek‑V4‑Pro',
     tone: '复杂推理 / Agentic Coding / 世界知识',
     promise: '面向高难任务的旗舰版本，在 Agent 能力、数学、STEM 与竞赛型代码评测中达到开源前列，并向顶级闭源模型靠近。',
     points: ['适合长链路 Agent', '建议复杂场景启用思考模式 max', 'API 并发限制 500'],
@@ -16,7 +16,7 @@ const models = {
     ],
   },
   flash: {
-    name: 'DeepSeek-V4-Flash',
+    name: 'DeepSeek‑V4‑Flash',
     tone: '低成本 / 高并发 / 日常生产流量',
     promise: '更小参数与激活规模带来更快、更经济的服务体验，在简单 Agent 任务中接近 Pro，是大规模调用的实用入口。',
     points: ['适合高频业务调用', '支持非思考与思考模式', 'API 并发限制 2500'],
@@ -73,21 +73,51 @@ const sources = [
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__visual" aria-hidden="true">
-          <svg class="chart" viewBox="0 0 640 640" role="img">
+          <svg class="chart context-map" viewBox="0 0 640 640" role="img">
             <defs>
-              <linearGradient id="sweep" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#273e91" />
-                <stop offset="58%" stop-color="#5568b8" />
-                <stop offset="100%" stop-color="#c8f05a" />
+              <linearGradient id="pageWash" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fffcef" stop-opacity="0.92" />
+                <stop offset="100%" stop-color="#d8d0bb" stop-opacity="0.52" />
+              </linearGradient>
+              <linearGradient id="tokenFlow" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#273e91" stop-opacity="0.24" />
+                <stop offset="62%" stop-color="#273e91" stop-opacity="0.72" />
+                <stop offset="100%" stop-color="#c8f05a" stop-opacity="0.96" />
               </linearGradient>
             </defs>
-            <path class="chart__contour" d="M89 403C52 315 90 170 204 99c101-63 250-59 334 28 73 76 93 207 37 306-58 102-187 151-303 128C188 545 119 476 89 403Z" />
-            <path class="chart__contour chart__contour--thin" d="M165 393c-35-74-9-173 60-224 72-53 190-49 250 17 54 59 58 162 14 230-47 71-141 101-223 77-45-13-82-48-101-100Z" />
-            <path class="chart__contour chart__contour--thin" d="M238 379c-27-49-7-112 41-141 51-31 124-17 156 31 29 44 21 109-18 146-43 40-112 46-153 12-11-9-20-24-26-48Z" />
-            <path class="chart__route" d="M73 534C193 453 225 301 328 261c85-32 147 26 235-49" />
-            <circle cx="328" cy="261" r="14" fill="#c8f05a" />
-            <circle cx="73" cy="534" r="7" fill="#273e91" />
-            <circle cx="563" cy="212" r="7" fill="#273e91" />
+            <g class="context-map__papers" transform="rotate(-5 320 320)">
+              <rect class="context-map__paper context-map__paper--back" x="138" y="70" width="370" height="452" rx="16" />
+              <rect class="context-map__paper context-map__paper--mid" x="112" y="92" width="396" height="452" rx="16" />
+              <rect class="context-map__paper" x="86" y="114" width="420" height="424" rx="16" />
+              <path class="context-map__header" d="M118 174H474" />
+              <text x="118" y="152" class="context-map__title">LONG CONTEXT BUFFER</text>
+              <g class="context-map__rows">
+                <path d="M120 206H438" />
+                <path d="M120 236H386" />
+                <path d="M120 266H464" />
+                <path d="M120 296H328" />
+                <path d="M120 326H450" />
+                <path d="M120 356H404" />
+                <path d="M120 386H468" />
+                <path d="M120 416H350" />
+                <path d="M120 446H430" />
+              </g>
+              <g class="context-map__chunks">
+                <rect x="330" y="222" width="118" height="22" rx="4" />
+                <rect x="146" y="282" width="138" height="22" rx="4" />
+                <rect x="292" y="402" width="126" height="22" rx="4" />
+              </g>
+            </g>
+            <g class="context-map__ruler">
+              <path d="M548 112h34v396h-34" />
+              <path d="M534 178h35M534 244h35M534 310h35M534 376h35M534 442h35" />
+              <text x="612" y="310" transform="rotate(90 612 310)">1M context window</text>
+            </g>
+            <g class="context-map__flow">
+              <path d="M116 486C210 442 286 428 362 438C425 446 464 424 524 360" />
+              <path d="M154 520C236 486 304 472 382 478C438 482 484 454 540 402" />
+              <circle cx="524" cy="360" r="10" />
+            </g>
           </svg>
           <div class="metric-slab">
             <div class="metric-slab__content">
@@ -136,11 +166,10 @@ const sources = [
       <section id="models" class="model-studio" aria-labelledby="model-title">
         <div class="model-studio__intro">
           <h2 id="model-title">
-            <span>同一套</span>
-            <span>长上下文底盘</span>
-            <span>两种速度</span>
+            <span>长上下文</span>
+            <span>一快一强</span>
           </h2>
-          <p>Pro 负责把上限推高，Flash 负责把成本压低。宣传页默认不替你做选择，而是把取舍摆在台面上。</p>
+          <p>Pro 冲上限，Flash 跑规模。上下文窗口一致，按任务难度和调用成本选择。</p>
         </div>
 
         <div class="model-switch" role="tablist" aria-label="选择模型版本">
