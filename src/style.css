@@ -715,6 +715,16 @@ h2 {
     border-bottom: 1px solid var(--line);
   }
 
+  .capability-wall__intro {
+    min-height: auto;
+    justify-content: flex-start;
+    gap: clamp(24px, 4vw, 34px);
+  }
+
+  .capability-wall li {
+    min-height: 132px;
+  }
+
   .model-switch {
     flex-direction: row;
   }
@@ -771,8 +781,22 @@ h2 {
     right: 18px;
   }
 
+  .capability-wall__intro {
+    padding: 52px 30px 40px;
+    gap: 28px;
+  }
+
+  .capability-wall__intro p {
+    margin-top: 18px;
+  }
+
   .capability-wall ul {
     grid-template-columns: 1fr;
+  }
+
+  .capability-wall li {
+    min-height: auto;
+    padding: 24px 30px;
   }
 
   .model-switch {
