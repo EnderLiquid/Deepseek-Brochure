@@ -546,6 +546,7 @@ h2 {
 
 .model-card {
   display: flex;
+  container-type: inline-size;
   flex-direction: column;
   justify-content: space-between;
   background: var(--surface-strong);
@@ -558,10 +559,12 @@ h2 {
 
 .model-card h3 {
   margin-top: 10px;
-  font-size: clamp(2.2rem, 5vw, 5.8rem);
-  line-height: 0.9;
-  letter-spacing: -0.09em;
+  max-inline-size: 100%;
+  font-size: clamp(1.45rem, 11.4cqi, 4.65rem);
+  line-height: 0.92;
+  letter-spacing: -0.08em;
   font-weight: 950;
+  white-space: nowrap;
   overflow-wrap: normal;
 }
 
