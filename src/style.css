@@ -63,6 +63,10 @@ a {
   text-decoration: none;
 }
 
+section[id] {
+  scroll-margin-top: 72px;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
